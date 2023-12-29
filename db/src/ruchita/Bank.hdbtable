@@ -1,0 +1,1 @@
+COLUMN TABLE "Intelgraph.ruchita::Bank" (Id INT,name varchar(255))
