@@ -1,0 +1,8 @@
+COLUMN TABLE "vttk_prav" (
+    ShipmentNumber NVARCHAR(10) PRIMARY KEY,
+    ShipmentType NVARCHAR(20),
+    ShipmentDate DATE,
+    TransportCompany NVARCHAR(50),
+    VehicleNumber NVARCHAR(15),
+    Status NVARCHAR(20)
+);

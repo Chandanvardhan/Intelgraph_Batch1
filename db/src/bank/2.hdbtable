@@ -1,0 +1,9 @@
+COLUMN TABLE "BP000" (
+BusinessPartner Nvarchar(225) PRIMARY KEY,
+CustomerName VARCHAR(255),
+Address VARCHAR(255),
+City VARCHAR(255),
+Country VARCHAR(255),
+Email VARCHAR(255),
+Phone VARCHAR(30)
+);

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="calc_vttp" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="calc_vttp"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="vttp_prav">
+    <resourceUri>vttp_prav</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="SHIPMENTNUMBER"/>
+      <viewAttribute id="SHIPMENTITEM"/>
+      <viewAttribute id="DELIVERY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="vttp_prav"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="SHIPMENTNUMBER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPMENTNUMBER"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SHIPMENTNUMBER"/>
+    </attribute>
+    <attribute id="DELIVERY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELIVERY"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DELIVERY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SHIPMENTITEM" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SHIPMENTITEM"/>
+      <measureMapping columnObjectName="Projection_1" columnName="SHIPMENTITEM"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="93" y="207"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

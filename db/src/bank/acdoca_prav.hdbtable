@@ -1,0 +1,9 @@
+COLUMN TABLE "acdoca_prav" (
+    DocumentNumber NVARCHAR(10),
+    PostingDate DATE,
+    GLAccount NVARCHAR(10),
+    DebitAmount DECIMAL(18, 2),
+    CreditAmount DECIMAL(18, 2),
+    CostCenter NVARCHAR(10),
+    ProfitCenter NVARCHAR(10)
+);

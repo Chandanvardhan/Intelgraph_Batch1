@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="pv1_join" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="pv1_join"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="vttk_prav">
+    <resourceUri>vttk_prav</resourceUri>
+  </DataSource>
+  <DataSource id="vttp_prav">
+    <resourceUri>vttp_prav</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="SHIPMENTNUMBER"/>
+      <viewAttribute id="SHIPMENTTYPE"/>
+      <viewAttribute id="SHIPMENTDATE"/>
+      <viewAttribute id="TRANSPORTCOMPANY"/>
+      <viewAttribute id="VEHICLENUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="vttk_prav"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="SHIPMENTNUMBER"/>
+      <viewAttribute id="SHIPMENTITEM"/>
+      <viewAttribute id="DELIVERY"/>
+      <viewAttribute id="DELIVERYITEM"/>
+      <viewAttribute id="QUANTITY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="vttp_prav"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="SHIPMENTNUMBER"/>
+      <viewAttribute id="SHIPMENTTYPE"/>
+      <viewAttribute id="SHIPMENTDATE"/>
+      <viewAttribute id="TRANSPORTCOMPANY"/>
+      <viewAttribute id="VEHICLENUMBER"/>
+    
+      <viewAttribute id="DELIVERY"/>
+      <viewAttribute hidden="true" id="JOIN$SHIPMENTNUMBER$SHIPMENTNUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIPMENTNUMBER" source="SHIPMENTNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIPMENTTYPE" source="SHIPMENTTYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIPMENTDATE" source="SHIPMENTDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRANSPORTCOMPANY" source="TRANSPORTCOMPANY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VEHICLENUMBER" source="VEHICLENUMBER"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SHIPMENTNUMBER$SHIPMENTNUMBER" source="SHIPMENTNUMBER"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERY" source="DELIVERY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SHIPMENTNUMBER$SHIPMENTNUMBER" source="SHIPMENTNUMBER"/>
+    </input>
+  
+    <joinAttribute name="JOIN$SHIPMENTNUMBER$SHIPMENTNUMBER"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="SHIPMENTNUMBER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPMENTNUMBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="SHIPMENTNUMBER"/>
+    </attribute>
+    <attribute id="SHIPMENTTYPE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPMENTTYPE"/>
+      <keyMapping columnObjectName="Join_1" columnName="SHIPMENTTYPE"/>
+    </attribute>
+    <attribute id="SHIPMENTDATE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPMENTDATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="SHIPMENTDATE"/>
+    </attribute>
+    <attribute id="TRANSPORTCOMPANY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TRANSPORTCOMPANY"/>
+      <keyMapping columnObjectName="Join_1" columnName="TRANSPORTCOMPANY"/>
+    </attribute>
+    <attribute id="VEHICLENUMBER" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VEHICLENUMBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="VEHICLENUMBER"/>
+    </attribute>
+  
+    <attribute id="DELIVERY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELIVERY"/>
+      <keyMapping columnObjectName="Join_1" columnName="DELIVERY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="30" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="338" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="184"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="190"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,8 @@
+COLUMN TABLE "vbap_prav" (
+    SalesDocument nvarchar(225),
+    ItemNumber bigINT,
+    MaterialNumber varchar(225),
+    Quantity bigINT,
+    NetPrice DECIMAL(18, 2),
+    ItemValue DECIMAL(18, 2)
+);

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="calc_acdoca" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="calc_acdoca"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="acdoca_prav">
+    <resourceUri>acdoca_prav</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="DOCUMENTNUMBER"/>
+      <viewAttribute id="POSTINGDATE"/>
+      <viewAttribute id="GLACCOUNT"/>
+      <viewAttribute id="DEBITAMOUNT"/>
+      <viewAttribute id="CREDITAMOUNT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="acdoca_prav"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="DOCUMENTNUMBER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOCUMENTNUMBER"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DOCUMENTNUMBER"/>
+    </attribute>
+    <attribute id="POSTINGDATE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POSTINGDATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="POSTINGDATE"/>
+    </attribute>
+    <attribute id="GLACCOUNT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GLACCOUNT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="GLACCOUNT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="DEBITAMOUNT" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DEBITAMOUNT"/>
+      <measureMapping columnObjectName="Projection_1" columnName="DEBITAMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="CREDITAMOUNT" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CREDITAMOUNT"/>
+      <measureMapping columnObjectName="Projection_1" columnName="CREDITAMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="203"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

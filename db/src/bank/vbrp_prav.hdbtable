@@ -1,0 +1,9 @@
+COLUMN TABLE "vbrp_prav" (
+    BillingDocument NVARCHAR(10),
+    BillingItem INT,
+    MaterialNumber NVARCHAR(10),
+    Quantity INT,
+    NetPrice DECIMAL(18, 2),
+    TaxCode NVARCHAR(10),
+    RevenueAccount NVARCHAR(10)
+);

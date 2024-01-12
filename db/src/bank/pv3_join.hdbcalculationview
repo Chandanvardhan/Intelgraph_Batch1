@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="pv3_join" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="pv3_join"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="vbrk_prav">
+    <resourceUri>vbrk_prav</resourceUri>
+  </DataSource>
+  <DataSource id="vbrp_prav">
+    <resourceUri>vbrp_prav</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="BILLINGDOCUMENT"/>
+      <viewAttribute id="BILLINGDATE"/>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="NETVALUE"/>
+      <viewAttribute id="TAXAMOUNT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="vbrk_prav"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="BILLINGDOCUMENT"/>
+      <viewAttribute id="BILLINGITEM"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="QUANTITY"/>
+      <viewAttribute id="NETPRICE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="vbrp_prav"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1">
+    <viewAttributes>
+      <viewAttribute id="BILLINGDOCUMENT"/>
+      <viewAttribute id="BILLINGDATE"/>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="BILLINGDOCUMENT_1"/>
+      <viewAttribute id="BILLINGITEM" aggregationType="sum"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="MATERIALNUMBER_1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDOCUMENT" source="BILLINGDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDATE" source="BILLINGDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESDOCUMENT" source="SALESDOCUMENT"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGDOCUMENT_1" source="BILLINGDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BILLINGITEM" source="BILLINGITEM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALNUMBER" source="MATERIALNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALNUMBER_1" source="MATERIALNUMBER"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="BILLINGDOCUMENT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BILLINGDOCUMENT"/>
+      <keyMapping columnObjectName="Join_1" columnName="BILLINGDOCUMENT"/>
+    </attribute>
+    <attribute id="BILLINGDATE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BILLINGDATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="BILLINGDATE"/>
+    </attribute>
+    <attribute id="SALESDOCUMENT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESDOCUMENT"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALESDOCUMENT"/>
+    </attribute>
+    <attribute id="BILLINGDOCUMENT_1" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BILLINGDOCUMENT"/>
+      <keyMapping columnObjectName="Join_1" columnName="BILLINGDOCUMENT_1"/>
+    </attribute>
+    <attribute id="MATERIALNUMBER" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATERIALNUMBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="MATERIALNUMBER"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="BILLINGITEM" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="BILLINGITEM"/>
+      <measureMapping columnObjectName="Join_1" columnName="BILLINGITEM"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-94" y="336"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="342" y="331"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="106" y="209"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="191.7353515625"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="191.7353515625"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

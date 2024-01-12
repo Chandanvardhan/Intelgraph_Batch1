@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="pv4_join" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="pv4_join"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="likp_prav">
+    <resourceUri>likp_prav</resourceUri>
+  </DataSource>
+  <DataSource id="lips_prav">
+    <resourceUri>lips_prav</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="DELIVERY"/>
+      <viewAttribute id="DELIVERYDATE"/>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="SHIPPINGPOINT"/>
+      <viewAttribute id="SHIPTOPARTY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="likp_prav"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="DELIVERY"/>
+      <viewAttribute id="DELIVERYITEM"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="QUANTITY"/>
+      <viewAttribute id="BATCH"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="lips_prav"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1">
+    <viewAttributes>
+      <viewAttribute id="DELIVERY"/>
+      <viewAttribute id="DELIVERYDATE"/>
+      <viewAttribute id="SALESDOCUMENT"/>
+      <viewAttribute id="SHIPPINGPOINT"/>
+      <viewAttribute id="SHIPTOPARTY"/>
+      <viewAttribute id="DELIVERY_1"/>
+      <viewAttribute id="DELIVERYITEM" aggregationType="sum"/>
+      <viewAttribute id="MATERIALNUMBER"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+      <viewAttribute id="BATCH"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERY" source="DELIVERY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERYDATE" source="DELIVERYDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESDOCUMENT" source="SALESDOCUMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIPPINGPOINT" source="SHIPPINGPOINT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHIPTOPARTY" source="SHIPTOPARTY"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERY_1" source="DELIVERY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERYITEM" source="DELIVERYITEM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATERIALNUMBER" source="MATERIALNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BATCH" source="BATCH"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="DELIVERY" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELIVERY"/>
+      <keyMapping columnObjectName="Join_1" columnName="DELIVERY"/>
+    </attribute>
+    <attribute id="DELIVERYDATE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELIVERYDATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="DELIVERYDATE"/>
+    </attribute>
+    <attribute id="SALESDOCUMENT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESDOCUMENT"/>
+      <keyMapping columnObjectName="Join_1" columnName="SALESDOCUMENT"/>
+    </attribute>
+    <attribute id="SHIPPINGPOINT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPPINGPOINT"/>
+      <keyMapping columnObjectName="Join_1" columnName="SHIPPINGPOINT"/>
+    </attribute>
+    <attribute id="SHIPTOPARTY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPTOPARTY"/>
+      <keyMapping columnObjectName="Join_1" columnName="SHIPTOPARTY"/>
+    </attribute>
+    <attribute id="DELIVERY_1" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELIVERY"/>
+      <keyMapping columnObjectName="Join_1" columnName="DELIVERY_1"/>
+    </attribute>
+    <attribute id="MATERIALNUMBER" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATERIALNUMBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="MATERIALNUMBER"/>
+    </attribute>
+    <attribute id="BATCH" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BATCH"/>
+      <keyMapping columnObjectName="Join_1" columnName="BATCH"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="DELIVERYITEM" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DELIVERYITEM"/>
+      <measureMapping columnObjectName="Join_1" columnName="DELIVERYITEM"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="QUANTITY" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QUANTITY"/>
+      <measureMapping columnObjectName="Join_1" columnName="QUANTITY"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-166" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="295" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="204"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="185.01611328125"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="187.86279296875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

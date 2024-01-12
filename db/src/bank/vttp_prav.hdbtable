@@ -1,0 +1,8 @@
+COLUMN TABLE "vttp_prav" (
+    ShipmentNumber NVARCHAR(10),
+    ShipmentItem INT,
+    Delivery NVARCHAR(10),
+    DeliveryItem INT,
+    Quantity INT,
+    Weight NVARCHAR(10)
+);

@@ -1,0 +1,5 @@
+COLUMN TABLE "tvkos_prav" (
+    SalesOrg NVARCHAR(10),
+    DistChannel NVARCHAR(255),
+    Description NVARCHAR(255)
+);

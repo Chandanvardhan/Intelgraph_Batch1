@@ -1,0 +1,9 @@
+COLUMN TABLE "lips_prav" (
+    Delivery NVARCHAR(225),
+    DeliveryItem INT,
+    MaterialNumber NVARCHAR(10),
+    Quantity INT,
+    Batch NVARCHAR(225),
+    Plant NVARCHAR(225),
+    StorageLoc NVARCHAR(225)
+);

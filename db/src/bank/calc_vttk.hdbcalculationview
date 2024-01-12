@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="calc_vttk" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="calc_vttk"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="vttk_prav">
+    <resourceUri>vttk_prav</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="SHIPMENTNUMBER"/>
+      <viewAttribute id="SHIPMENTTYPE"/>
+      <viewAttribute id="SHIPMENTDATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="vttk_prav"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="SHIPMENTNUMBER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPMENTNUMBER"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SHIPMENTNUMBER"/>
+    </attribute>
+    <attribute id="SHIPMENTTYPE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPMENTTYPE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SHIPMENTTYPE"/>
+    </attribute>
+    <attribute id="SHIPMENTDATE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHIPMENTDATE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SHIPMENTDATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="199"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
